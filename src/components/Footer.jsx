@@ -1,26 +1,9 @@
-import { Link, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+
+const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  const handleServiceClick = (e, hash) => {
-    // Se já estamos na página de serviços
-    if (window.location.pathname === '/servicos') {
-      e.preventDefault()
-      // Atualiza a hash
-      window.location.hash = hash
-      // Scroll para o elemento
-      const element = document.querySelector(hash)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    }
-  }
 
   return (
     <footer className="bg-gray-900 text-white py-8 sm:py-12">
@@ -35,62 +18,63 @@ const Footer = () => {
               Adestramento profissional de cães com técnicas modernas e positivas. Transformamos o comportamento do seu pet.
             </p>
             <div className="flex gap-3 sm:gap-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm" aria-label="Facebook">
-                Facebook
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm" aria-label="Instagram">
-                Instagram
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm" aria-label="YouTube">
-                YouTube
-              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm" aria-label="Facebook">Facebook</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm" aria-label="Instagram">Instagram</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm" aria-label="YouTube">YouTube</a>
             </div>
           </div>
 
           <div>
             <h4 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Serviços</h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/servicos#basico" onClick={(e) => handleServiceClick(e, '#basico')} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
-                  Adestramento Básico
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos#avancado" onClick={(e) => handleServiceClick(e, '#avancado')} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
-                  Adestramento Avançado
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos#comportamento" onClick={(e) => handleServiceClick(e, '#comportamento')} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
-                  Correção de Comportamento
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos#domicilio" onClick={(e) => handleServiceClick(e, '#domicilio')} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
-                  Adestramento em Domicílio
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos#ar-livre" onClick={(e) => handleServiceClick(e, '#ar-livre')} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
-                  Aulas ao Ar Livre
-                </Link>
-              </li>
-              <li>
-                <Link to="/servicos#filhotes" onClick={(e) => handleServiceClick(e, '#filhotes')} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
-                  Adestramento para Filhotes
-                </Link>
-              </li>
+              {[
+                { id: 'basico', label: 'Adestramento Básico' },
+                { id: 'avancado', label: 'Adestramento Avançado' },
+                { id: 'comportamento', label: 'Correção de Comportamento' },
+                { id: 'domicilio', label: 'Adestramento em Domicílio' },
+                { id: 'ar-livre', label: 'Aulas ao Ar Livre' },
+                { id: 'filhotes', label: 'Adestramento para Filhotes' },
+              ].map(item => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => scrollTo(item.id)}
+                    className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base text-left"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Informações</h4>
+            <h4 className="font-bold mb-3 sm:mb-4 text-base sm:text-lg">Navegação</h4>
             <ul className="space-y-2">
-              <li><Link to="/sobre" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">Sobre Nós</Link></li>
-              <li><Link to="/depoimentos" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">Depoimentos</Link></li>
-              <li><Link to="/contato" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">Contato</Link></li>
-              <li><Link to="/politica-privacidade" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">Política de Privacidade</Link></li>
-              <li><Link to="/termos-de-uso" onClick={scrollToTop} className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">Termos de Uso</Link></li>
+              {[
+                { id: 'inicio', label: 'Início' },
+                { id: 'sobre', label: 'Sobre Nós' },
+                { id: 'depoimentos', label: 'Depoimentos' },
+                { id: 'contato', label: 'Contato' },
+              ].map(item => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => scrollTo(item.id)}
+                    className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base text-left"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
+              <li>
+                <Link to="/politica-privacidade" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
+                  Política de Privacidade
+                </Link>
+              </li>
+              <li>
+                <Link to="/termos-de-uso" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base block">
+                  Termos de Uso
+                </Link>
+              </li>
             </ul>
           </div>
 
