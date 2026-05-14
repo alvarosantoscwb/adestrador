@@ -63,7 +63,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <button
             onClick={() => scrollToSection('inicio')}
-            className="flex items-center gap-2 sm:gap-3 group"
+            className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             aria-label="Ir para o início"
           >
             <span className="text-3xl sm:text-4xl group-hover:scale-110 transition-transform">🐕‍🦺</span>
@@ -78,7 +78,7 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="bg-green-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium text-sm sm:text-base ml-2"
+                  className="bg-green-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium text-sm sm:text-base ml-2 cursor-pointer"
                 >
                   {item.label}
                 </button>
@@ -86,7 +86,7 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-3 py-2 font-medium text-sm sm:text-base transition-colors ${
+                  className={`relative px-3 py-2 font-medium text-sm sm:text-base transition-colors cursor-pointer ${
                     isHomePage && activeSection === item.id
                       ? 'text-green-600'
                       : 'text-gray-700 hover:text-green-600'
