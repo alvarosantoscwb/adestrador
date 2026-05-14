@@ -91,6 +91,7 @@ const Gallery = () => {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [lightbox, setLightbox] = useState(null)
+  const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
     supabase
@@ -104,6 +105,8 @@ const Gallery = () => {
   }, [])
 
   if (!loading && items.length === 0) return null
+
+  const displayedItems = showAll ? items : items.slice(0, 6)
 
   return (
     <section id="galeria" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 scroll-mt-20 overflow-hidden">
@@ -130,11 +133,24 @@ const Gallery = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {items.map(item => (
-              <GalleryItem key={item.id} item={item} onClick={setLightbox} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {displayedItems.map(item => (
+                <GalleryItem key={item.id} item={item} onClick={setLightbox} />
+              ))}
+            </div>
+
+            {!showAll && items.length > 6 && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="text-green-600 dark:text-green-400 font-semibold hover:underline cursor-pointer"
+                >
+                  Ver galeria completa ({items.length} itens)
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
 

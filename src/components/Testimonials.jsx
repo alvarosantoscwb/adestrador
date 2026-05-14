@@ -162,6 +162,7 @@ const SubmitForm = () => {
 const Testimonials = ({ stats }) => {
   const [testimonials, setTestimonials] = useState([])
   const [loading, setLoading] = useState(true)
+  const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
     supabase
@@ -174,6 +175,8 @@ const Testimonials = ({ stats }) => {
         setLoading(false)
       })
   }, [])
+
+  const displayedTestimonials = showAll ? testimonials : testimonials.slice(0, 3)
 
   return (
     <section id="depoimentos" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 scroll-mt-20 overflow-hidden">
@@ -200,11 +203,24 @@ const Testimonials = ({ stats }) => {
             ))}
           </div>
         ) : testimonials.length > 0 ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {testimonials.map((t, i) => (
-              <TestimonialCard key={t.id} testimonial={t} index={i} />
-            ))}
-          </div>
+          <>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {displayedTestimonials.map((t, i) => (
+                <TestimonialCard key={t.id} testimonial={t} index={i} />
+              ))}
+            </div>
+            
+            {!showAll && testimonials.length > 3 && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="text-green-600 dark:text-green-400 font-semibold hover:underline cursor-pointer"
+                >
+                  Ver todos os depoimentos ({testimonials.length})
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <p className="text-center text-gray-500 dark:text-gray-400 py-12">
             Ainda sem depoimentos aprovados. Seja o primeiro!
