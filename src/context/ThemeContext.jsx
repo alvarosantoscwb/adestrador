@@ -4,19 +4,27 @@ const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved) return saved === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    try {
+      const saved = localStorage.getItem('theme')
+      if (saved) return saved === 'dark'
+    } catch (e) {
+      console.warn('LocalStorage not available')
+    }
+    return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
   })
 
   useEffect(() => {
     const root = document.documentElement
-    if (isDark) {
-      root.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      root.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
+    try {
+      if (isDark) {
+        root.classList.add('dark')
+        localStorage.setItem('theme', 'dark')
+      } else {
+        root.classList.remove('dark')
+        localStorage.setItem('theme', 'light')
+      }
+    } catch (e) {
+      // Silently fail if localStorage is blocked
     }
   }, [isDark])
 

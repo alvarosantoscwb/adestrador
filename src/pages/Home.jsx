@@ -16,22 +16,45 @@ const Home = () => {
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash)
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 150)
+      if (el) {
+        const timer = setTimeout(() => {
+          try {
+            el.scrollIntoView({ behavior: 'smooth' })
+          } catch (e) {
+            // Fallback para navegadores antigos ou Safari instável
+            el.scrollIntoView()
+          }
+        }, 300)
+        return () => clearTimeout(timer)
+      }
     }
   }, [location.hash])
 
   useEffect(() => {
-    supabase
-      .from('testimonials')
-      .select('rating')
-      .eq('status', 'approved')
-      .then(({ data }) => {
-        if (data && data.length > 0) {
+    let isMounted = true
+    
+    async function fetchStats() {
+      try {
+        const { data, error } = await supabase
+          .from('testimonials')
+          .select('rating')
+          .eq('status', 'approved')
+        
+        if (error) throw error
+        
+        if (isMounted && data && data.length > 0) {
           const count = data.length
-          const average = (data.reduce((acc, t) => acc + (t.rating || 5), 0) / count).toFixed(1)
-          setStats({ count, average })
+          const totalRating = data.reduce((acc, t) => acc + (Number(t.rating) || 5), 0)
+          const avg = (totalRating / count).toFixed(1)
+          setStats({ count, average: avg })
         }
-      })
+      } catch (err) {
+        console.error('Erro ao buscar estatísticas:', err)
+      }
+    }
+
+    fetchStats()
+    return () => { isMounted = false }
   }, [])
 
   return (
