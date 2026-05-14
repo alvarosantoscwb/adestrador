@@ -15,7 +15,8 @@ const Footer = () => {
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">AdestradorPro</h3>
             </div>
             <p className="text-gray-500 dark:text-gray-400 mb-3 sm:mb-4 text-sm sm:text-base">
-              Adestramento profissional de cães com técnicas modernas e positivas. Transformamos o comportamento do seu pet.
+              Adestramento profissional de cães com técnicas modernas e positivas. Transformamos o comportamento do seu pet
+              <Link to="/admin" className="opacity-0 group-hover:opacity-100 transition-opacity hover:text-green-600 dark:hover:text-green-400">.</Link>
             </p>
             <div className="flex gap-3 sm:gap-4">
               <a href="#" className="text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors text-sm" aria-label="Facebook">Facebook</a>
