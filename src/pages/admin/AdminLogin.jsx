@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 
 const AdminLogin = () => {
@@ -67,6 +67,13 @@ const AdminLogin = () => {
           >
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
+
+          <Link
+            to="/"
+            className="block text-center text-sm text-gray-500 hover:text-green-600 transition-colors pt-2"
+          >
+            ← Voltar para o site
+          </Link>
         </form>
       </div>
     </div>
