@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 py-8 sm:py-12">
+    <footer className="group bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 py-8 sm:py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
           <div>
@@ -105,6 +105,7 @@ const Footer = () => {
             <div className="text-center sm:text-left">
               <p className="text-gray-400 dark:text-gray-500 text-xs sm:text-sm">
                 © {currentYear} AdestradorPro. Todos os direitos reservados.
+                <Link to="/admin" className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity hover:text-green-600 dark:hover:text-green-400">.</Link>
               </p>
             </div>
             <div className="text-center sm:text-right">

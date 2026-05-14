@@ -2,8 +2,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
-html {
+html, body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 
 @layer utilities {

@@ -159,7 +159,7 @@ const SubmitForm = () => {
   )
 }
 
-const Testimonials = () => {
+const Testimonials = ({ stats }) => {
   const [testimonials, setTestimonials] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -176,7 +176,7 @@ const Testimonials = () => {
   }, [])
 
   return (
-    <section id="depoimentos" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 scroll-mt-20">
+    <section id="depoimentos" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 scroll-mt-20 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8 sm:mb-12 lg:mb-16"
@@ -211,7 +211,7 @@ const Testimonials = () => {
           </p>
         )}
 
-        {testimonials.length > 0 && (
+        {stats && stats.count > 0 && (
           <motion.div
             className="mt-8 sm:mt-12 text-center"
             initial={{ opacity: 0 }}
@@ -221,8 +221,10 @@ const Testimonials = () => {
             <div className="inline-flex items-center gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-4 sm:p-6">
               <div className="text-3xl sm:text-4xl">⭐</div>
               <div className="text-left">
-                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">5.0/5.0</p>
-                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">Baseado em +500 avaliações</p>
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">{stats.average}/5.0</p>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+                  Baseado em {stats.count >= 500 ? '+500' : stats.count} {stats.count === 1 ? 'avaliação' : 'avaliações'}
+                </p>
               </div>
             </div>
           </motion.div>

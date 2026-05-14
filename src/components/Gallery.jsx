@@ -106,7 +106,7 @@ const Gallery = () => {
   if (!loading && items.length === 0) return null
 
   return (
-    <section id="galeria" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 scroll-mt-20">
+    <section id="galeria" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 scroll-mt-20 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8 sm:mb-12"

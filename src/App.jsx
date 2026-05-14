@@ -29,7 +29,7 @@ function App() {
           <Route path="/" element={
             <>
               <Header />
-              <main>
+              <main className="overflow-x-hidden">
                 <Home />
               </main>
               <Footer />
@@ -39,14 +39,14 @@ function App() {
           <Route path="/politica-privacidade" element={
             <>
               <Header />
-              <main><PoliticaPrivacidade /></main>
+              <main className="overflow-x-hidden"><PoliticaPrivacidade /></main>
               <Footer />
             </>
           } />
           <Route path="/termos-de-uso" element={
             <>
               <Header />
-              <main><TermosUso /></main>
+              <main className="overflow-x-hidden"><TermosUso /></main>
               <Footer />
             </>
           } />
