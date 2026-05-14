@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
@@ -8,18 +9,20 @@ import TermosUso from './pages/TermosUso'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
-          <Route path="/termos-de-uso" element={<TermosUso />} />
-        </Routes>
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
+            <Route path="/termos-de-uso" element={<TermosUso />} />
+          </Routes>
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 

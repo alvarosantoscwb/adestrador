@@ -62,7 +62,7 @@ const cardVariants = {
 
 const Testimonials = () => {
   return (
-    <section id="depoimentos" className="py-16 sm:py-20 lg:py-24 bg-white scroll-mt-20">
+    <section id="depoimentos" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8 sm:mb-12 lg:mb-16"
@@ -71,10 +71,10 @@ const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             O Que Nossos Clientes Dizem
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto px-2">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto px-2">
             Histórias reais de transformações que mudaram a vida de cães e suas famílias
           </p>
         </motion.div>
@@ -88,28 +88,28 @@ const Testimonials = () => {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
               variants={cardVariants}
-              className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow"
+              className="bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow"
             >
               <div className="flex items-center gap-1 mb-3 sm:mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <span key={i} className="text-yellow-400 text-lg sm:text-xl">★</span>
                 ))}
               </div>
-              <p className="text-xs sm:text-sm lg:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed italic">
+              <p className="text-xs sm:text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed italic">
                 "{testimonial.text}"
               </p>
-              <div className="border-t border-gray-200 pt-3 sm:pt-4">
-                <p className="font-bold text-gray-900 text-sm sm:text-base">{testimonial.name}</p>
-                <p className="text-xs sm:text-sm text-gray-600">{testimonial.location}</p>
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-3 sm:pt-4">
+                <p className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">{testimonial.name}</p>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{testimonial.location}</p>
               </div>
               <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-red-50 rounded-lg p-2 sm:p-3">
-                  <p className="text-xs text-red-600 font-medium mb-1">Antes</p>
-                  <p className="text-gray-700 text-xs sm:text-sm leading-tight">{testimonial.before}</p>
+                <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-2 sm:p-3">
+                  <p className="text-xs text-red-600 dark:text-red-400 font-medium mb-1">Antes</p>
+                  <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-tight">{testimonial.before}</p>
                 </div>
-                <div className="bg-green-50 rounded-lg p-2 sm:p-3">
-                  <p className="text-xs text-green-600 font-medium mb-1">Depois</p>
-                  <p className="text-gray-700 text-xs sm:text-sm leading-tight">{testimonial.after}</p>
+                <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 sm:p-3">
+                  <p className="text-xs text-green-600 dark:text-green-400 font-medium mb-1">Depois</p>
+                  <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-tight">{testimonial.after}</p>
                 </div>
               </div>
             </motion.article>
@@ -123,11 +123,11 @@ const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-3 sm:gap-4 bg-green-50 rounded-lg p-4 sm:p-6">
+          <div className="inline-flex items-center gap-3 sm:gap-4 bg-green-50 dark:bg-green-900/20 rounded-lg p-4 sm:p-6">
             <div className="text-3xl sm:text-4xl">⭐</div>
             <div className="text-left">
-              <p className="text-xl sm:text-2xl font-bold text-gray-900">5.0/5.0</p>
-              <p className="text-sm sm:text-base text-gray-700">Baseado em +500 avaliações</p>
+              <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">5.0/5.0</p>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">Baseado em +500 avaliações</p>
             </div>
           </div>
         </motion.div>

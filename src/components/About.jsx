@@ -9,7 +9,7 @@ const stats = [
 
 const About = () => {
   return (
-    <section id="sobre" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-white scroll-mt-20">
+    <section id="sobre" className="py-16 sm:py-20 lg:py-24 bg-gray-50 dark:bg-gray-800 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
@@ -40,16 +40,16 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
               Sobre Mim: Sua Parceria no Adestramento Canino
             </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               Olá! Sou um adestrador profissional certificado com mais de 10 anos de experiência transformando o comportamento de cães e melhorando a qualidade de vida de suas famílias.
             </p>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               Minha filosofia é baseada em métodos positivos e cientificamente comprovados, onde reforçamos comportamentos desejados em vez de punir os indesejados. Isso cria um vínculo mais forte entre você e seu pet, com resultados duradouros.
             </p>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
               Cada cão é único, e por isso crio planos personalizados que se adaptam às necessidades específicas do seu animal e da sua família. Já trabalhei com mais de 500 cães, desde filhotes até cães adultos com problemas comportamentais complexos.
             </p>
 
@@ -57,14 +57,14 @@ const About = () => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="text-center p-3 sm:p-4 bg-white rounded-lg shadow-md"
+                  className="text-center p-3 sm:p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <p className="text-2xl sm:text-3xl font-bold text-green-600">{stat.number}</p>
-                  <p className="text-xs sm:text-sm text-gray-700 font-medium">{stat.label}</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">{stat.number}</p>
+                  <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 font-medium">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -72,7 +72,7 @@ const About = () => {
             <div className="pt-4">
               <button
                 onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-                className="inline-block bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+                className="inline-block bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer"
               >
                 Agende uma Consulta Gratuita
               </button>

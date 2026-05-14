@@ -56,7 +56,7 @@ const cardVariants = {
 
 const Services = () => {
   return (
-    <section id="servicos" className="py-16 sm:py-20 lg:py-24 bg-white scroll-mt-20">
+    <section id="servicos" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-8 sm:mb-12 lg:mb-16"
@@ -65,10 +65,10 @@ const Services = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Nossos Serviços de Adestramento
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto px-2">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto px-2">
             Soluções completas para transformar o comportamento do seu cão e fortalecer o vínculo com sua família
           </p>
         </motion.div>
@@ -83,21 +83,21 @@ const Services = () => {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
               variants={cardVariants}
-              className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow group scroll-mt-20"
+              className="bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow group scroll-mt-20"
             >
               <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
                 {service.icon}
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
                 {service.title}
               </h3>
-              <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed">
                 {service.description}
               </p>
               <ul className="space-y-1 sm:space-y-2">
                 {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                    <span className="text-green-600 text-base sm:text-lg">✓</span>
+                  <li key={i} className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    <span className="text-green-600 dark:text-green-400 text-base sm:text-lg">✓</span>
                     {feature}
                   </li>
                 ))}
@@ -115,7 +115,7 @@ const Services = () => {
         >
           <button
             onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-block bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer"
           >
             Solicite um Orçamento Gratuito
           </button>
