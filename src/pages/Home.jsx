@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import SEO from '../components/SEO'
 import Hero from '../components/Hero'
 import Services from '../components/Services'
+import Gallery from '../components/Gallery'
 import About from '../components/About'
 import Testimonials from '../components/Testimonials'
 import Contact from '../components/Contact'
@@ -13,9 +14,7 @@ const Home = () => {
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash)
-      if (el) {
-        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 150)
-      }
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 150)
     }
   }, [location.hash])
 
@@ -27,6 +26,7 @@ const Home = () => {
       />
       <Hero />
       <Services />
+      <Gallery />
       <About />
       <Testimonials />
       <Contact />

@@ -1,66 +1,180 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-
-const testimonials = [
-  {
-    name: 'Maria Silva',
-    location: 'Curitiba, PR',
-    text: 'Nosso cãozinho Max era muito agressivo com visitantes. Após algumas sessões, ele se transformou! Agora recebemos visitas sem problemas. O método é realmente eficaz.',
-    rating: 5,
-    before: 'Latia e pulava em todos',
-    after: 'Calmíssimo e socializado',
-  },
-  {
-    name: 'João Santos',
-    location: 'Colombo, PR',
-    text: 'Tínhamos um Pug que não obedecia a nada. Com o adestramento em domicílio, aprendemos técnicas que usamos até hoje. Melhor investimento que fizemos!',
-    rating: 5,
-    before: 'Desobediente e teimoso',
-    after: 'Atencioso e disciplinado',
-  },
-  {
-    name: 'Ana Costa',
-    location: 'São José dos Pinhais, PR',
-    text: 'Resolvemos a ansiedade de separação do nosso Pastor Alemão em tempo recorde. O adestrador foi paciente, profissional e explicou tudo com clareza.',
-    rating: 5,
-    before: 'Destruía tudo quando saíamos',
-    after: 'Calmíssimo quando sozinho',
-  },
-  {
-    name: 'Carlos Oliveira',
-    location: 'Pinhais, PR',
-    text: 'Levamos nosso filhote para socialização precoce. Melhor decisão! Hoje ele é um cão equilibrado que se dá bem com outros animais e pessoas.',
-    rating: 5,
-    before: 'Medroso e arredio',
-    after: 'Social e confiante',
-  },
-  {
-    name: 'Fernanda Lima',
-    location: 'Araucária, PR',
-    text: 'Adestramento avançado para competição. Nosso cão hoje obedece comandos complexos mesmo com distrações. Profissionalismo impecável!',
-    rating: 5,
-    before: 'Básico, distraia fácil',
-    after: 'Avançado, foco total',
-  },
-  {
-    name: 'Ricardo Almeida',
-    location: 'Fazenda Rio Grande, PR',
-    text: 'Recuperamos o vínculo com nosso cão depois de meses de problemas. A abordagem positiva realmente funciona. Recomendo para todos!',
-    rating: 5,
-    before: 'Relação tensa e conflituosa',
-    after: 'Vínculo forte e amoroso',
-  },
-]
+import { supabase } from '../lib/supabase'
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i) => ({
-    opacity: 1,
-    y: 0,
+    opacity: 1, y: 0,
     transition: { duration: 0.5, delay: i * 0.08 },
   }),
 }
 
+const StarSelector = ({ value, onChange }) => (
+  <div className="flex gap-1">
+    {[1, 2, 3, 4, 5].map(star => (
+      <button
+        key={star}
+        type="button"
+        onClick={() => onChange(star)}
+        className={`text-2xl transition-transform hover:scale-110 cursor-pointer ${star <= value ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
+      >
+        ★
+      </button>
+    ))}
+  </div>
+)
+
+const TestimonialCard = ({ testimonial, index }) => (
+  <motion.article
+    custom={index}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: '-50px' }}
+    variants={cardVariants}
+    className="bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow"
+  >
+    <div className="flex items-center gap-1 mb-3">
+      {[...Array(testimonial.rating)].map((_, i) => (
+        <span key={i} className="text-yellow-400 text-lg sm:text-xl">★</span>
+      ))}
+    </div>
+    <p className="text-xs sm:text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed italic">
+      "{testimonial.texto}"
+    </p>
+    <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
+      <p className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">{testimonial.nome}</p>
+      {testimonial.cidade && (
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{testimonial.cidade}</p>
+      )}
+    </div>
+  </motion.article>
+)
+
+const SubmitForm = () => {
+  const [form, setForm] = useState({ nome: '', cidade: '', texto: '', rating: 5 })
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('loading')
+    const { error } = await supabase.from('testimonials').insert([{
+      nome: form.nome,
+      cidade: form.cidade,
+      texto: form.texto,
+      rating: form.rating,
+      status: 'pending',
+    }])
+    if (error) {
+      setStatus('error')
+    } else {
+      setStatus('success')
+      setForm({ nome: '', cidade: '', texto: '', rating: 5 })
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center py-10 px-6 bg-green-50 dark:bg-green-900/20 rounded-2xl border border-green-200 dark:border-green-800"
+      >
+        <div className="text-5xl mb-4">🐕</div>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Depoimento enviado!</h3>
+        <p className="text-gray-600 dark:text-gray-400">Obrigado pelo seu relato. Ele será publicado após aprovação.</p>
+        <button
+          onClick={() => setStatus('idle')}
+          className="mt-6 text-green-600 dark:text-green-400 font-medium hover:underline cursor-pointer"
+        >
+          Enviar outro
+        </button>
+      </motion.div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Seu nome *
+          </label>
+          <input
+            type="text"
+            required
+            value={form.nome}
+            onChange={e => setForm(f => ({ ...f, nome: e.target.value }))}
+            placeholder="João Silva"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Cidade
+          </label>
+          <input
+            type="text"
+            value={form.cidade}
+            onChange={e => setForm(f => ({ ...f, cidade: e.target.value }))}
+            placeholder="Curitiba, PR"
+            className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all text-sm"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Avaliação *
+        </label>
+        <StarSelector value={form.rating} onChange={r => setForm(f => ({ ...f, rating: r }))} />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          Seu depoimento *
+        </label>
+        <textarea
+          required
+          rows={4}
+          value={form.texto}
+          onChange={e => setForm(f => ({ ...f, texto: e.target.value }))}
+          placeholder="Conte como foi a experiência com o adestramento..."
+          className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all resize-none text-sm"
+        />
+      </div>
+
+      {status === 'error' && (
+        <p className="text-red-500 text-sm">Erro ao enviar. Tente novamente.</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors disabled:opacity-60 cursor-pointer"
+      >
+        {status === 'loading' ? 'Enviando...' : 'Enviar Depoimento'}
+      </button>
+    </form>
+  )
+}
+
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    supabase
+      .from('testimonials')
+      .select('*')
+      .eq('status', 'approved')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => {
+        setTestimonials(data || [])
+        setLoading(false)
+      })
+  }, [])
+
   return (
     <section id="depoimentos" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-gray-900 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,56 +193,57 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.article
-              key={index}
-              custom={index}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              variants={cardVariants}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow"
-            >
-              <div className="flex items-center gap-1 mb-3 sm:mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <span key={i} className="text-yellow-400 text-lg sm:text-xl">★</span>
-                ))}
-              </div>
-              <p className="text-xs sm:text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed italic">
-                "{testimonial.text}"
-              </p>
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-3 sm:pt-4">
-                <p className="font-bold text-gray-900 dark:text-white text-sm sm:text-base">{testimonial.name}</p>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{testimonial.location}</p>
-              </div>
-              <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2 text-xs">
-                <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-2 sm:p-3">
-                  <p className="text-xs text-red-600 dark:text-red-400 font-medium mb-1">Antes</p>
-                  <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-tight">{testimonial.before}</p>
-                </div>
-                <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-2 sm:p-3">
-                  <p className="text-xs text-green-600 dark:text-green-400 font-medium mb-1">Depois</p>
-                  <p className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-tight">{testimonial.after}</p>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="bg-gray-100 dark:bg-gray-800 rounded-2xl h-52 animate-pulse" />
+            ))}
+          </div>
+        ) : testimonials.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {testimonials.map((t, i) => (
+              <TestimonialCard key={t.id} testimonial={t} index={i} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-500 dark:text-gray-400 py-12">
+            Ainda sem depoimentos aprovados. Seja o primeiro!
+          </p>
+        )}
 
+        {testimonials.length > 0 && (
+          <motion.div
+            className="mt-8 sm:mt-12 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-3 bg-green-50 dark:bg-green-900/20 rounded-lg p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl">⭐</div>
+              <div className="text-left">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">5.0/5.0</p>
+                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">Baseado em +500 avaliações</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Form de envio */}
         <motion.div
-          className="mt-8 sm:mt-12 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          className="mt-16 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-3 sm:gap-4 bg-green-50 dark:bg-green-900/20 rounded-lg p-4 sm:p-6">
-            <div className="text-3xl sm:text-4xl">⭐</div>
-            <div className="text-left">
-              <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">5.0/5.0</p>
-              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">Baseado em +500 avaliações</p>
-            </div>
+          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-gray-700">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              Deixe seu Depoimento
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              Seu relato será publicado após análise. Obrigado pela confiança!
+            </p>
+            <SubmitForm />
           </div>
         </motion.div>
       </div>

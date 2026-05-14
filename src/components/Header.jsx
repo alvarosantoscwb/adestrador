@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContext'
 const navItems = [
   { id: 'inicio', label: 'Início' },
   { id: 'servicos', label: 'Serviços' },
+  { id: 'galeria', label: 'Galeria' },
   { id: 'sobre', label: 'Sobre' },
   { id: 'depoimentos', label: 'Depoimentos' },
   { id: 'contato', label: 'Contato', isButton: true },
