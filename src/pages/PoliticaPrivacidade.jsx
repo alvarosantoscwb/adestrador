@@ -94,9 +94,9 @@ const PoliticaPrivacidade = () => {
                 Para dúvidas, solicitações ou exercício de seus direitos, entre em contato:
               </p>
               <ul className="space-y-2">
-                <li><strong>Email:</strong> contato@adestradorpro.com.br</li>
-                <li><strong>Telefone:</strong> (41) 99999-9999</li>
-                <li><strong>WhatsApp:</strong> (41) 99999-9999</li>
+                <li><strong>Email:</strong> fabianosantosadestrador@gmail.com</li>
+                <li><strong>Telefone:</strong> (41) 99925-1198</li>
+                <li><strong>WhatsApp:</strong> (41) 99925-1198</li>
               </ul>
             </section>
 

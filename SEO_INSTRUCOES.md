@@ -5,8 +5,8 @@
 ### 1. Atualizar Informações Reais
 
 #### No arquivo `src/components/Contact.jsx`:
-- Atualize o número de telefone: `(41) 99999-9999`
-- Atualize o email: `contato@adestradorpro.com.br`
+- Atualize o número de telefone: `(41) 99925-1198`
+- Atualize o email: `fabianosantosadestrador@gmail.com`
 - Atualize o link do WhatsApp: `https://wa.me/5511999999999`
 
 #### No arquivo `src/components/Footer.jsx`:

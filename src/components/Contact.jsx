@@ -29,10 +29,10 @@ const Contact = () => {
           >
             <div className="space-y-3 sm:space-y-4">
               {[
-                { icon: '📞', title: 'Telefone', line1: '(41) 99999-9999', line2: 'Segunda a Sábado, 9h às 18h' },
-                { icon: '📧', title: 'Email', line1: 'contato@adestradorpro.com.br', line2: 'Respondemos em até 24h' },
-                { icon: '📍', title: 'Localização', line1: 'Curitiba e Região Metropolitana', line2: 'Colombo e cidades vizinhas • Adestramento em domicílio' },
-                { icon: '💬', title: 'WhatsApp', line1: '(41) 99999-9999', line2: 'Resposta imediata' },
+                { icon: '📞', title: 'Telefone', line1: '(41) 99925-1198', line2: 'Segunda a Sábado, 9h às 18h' },
+                { icon: '📧', title: 'Email', line1: 'fabianosantosadestrador@gmail.com', line2: 'Respondemos em até 24h' },
+                { icon: '📍', title: 'Localização', line1: 'Curitiba e Região Metropolitana', line2: 'Adestramento em domicílio' },
+                { icon: '💬', title: 'WhatsApp', line1: '(41) 99925-1198', line2: 'Resposta imediata' },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-3 sm:gap-4">
                   <div className="text-xl sm:text-2xl flex-shrink-0">{item.icon}</div>
@@ -47,7 +47,7 @@ const Contact = () => {
 
             <div className="pt-2">
               <a
-                href="https://wa.me/5541999999999"
+                href="https://wa.me/554199251198"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl"
@@ -70,13 +70,13 @@ const Contact = () => {
             </h3>
             <form
               className="space-y-3 sm:space-y-4"
-              action="mailto:contato@adestradorpro.com.br"
+              action="mailto:fabianosantosadestrador@gmail.com"
               method="post"
               encType="text/plain"
             >
               {[
                 { id: 'name', label: 'Nome Completo *', type: 'text', placeholder: 'Seu nome completo', required: true },
-                { id: 'phone', label: 'Telefone / WhatsApp *', type: 'tel', placeholder: '(41) 99999-9999', required: true },
+                { id: 'phone', label: 'Telefone / WhatsApp *', type: 'tel', placeholder: '(41) 99925-1198', required: true },
                 { id: 'dog', label: 'Nome do Cão', type: 'text', placeholder: 'Nome do seu cão', required: false },
               ].map((field) => (
                 <div key={field.id}>

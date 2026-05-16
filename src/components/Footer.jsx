@@ -89,10 +89,10 @@ const Footer = () => {
             </address>
             <div className="space-y-2">
               <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">
-                <strong className="text-gray-900 dark:text-white">Telefone:</strong> (41) 99999-9999
+                <strong className="text-gray-900 dark:text-white">Telefone:</strong> (41) 99925-1198
               </p>
               <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">
-                <strong className="text-gray-900 dark:text-white">Email:</strong> contato@adestradorpro.com.br
+                <strong className="text-gray-900 dark:text-white">Email:</strong> fabianosantosadestrador@gmail.com
               </p>
               <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">
                 <strong className="text-gray-900 dark:text-white">Horário:</strong> Seg-Sab, 9h às 18h
@@ -106,7 +106,6 @@ const Footer = () => {
             <div className="text-center sm:text-left">
               <p className="text-gray-400 dark:text-gray-500 text-xs sm:text-sm">
                 © {currentYear} AdestradorPro. Todos os direitos reservados.
-                <Link to="/admin" className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity hover:text-green-600 dark:hover:text-green-400">.</Link>
               </p>
             </div>
             <div className="text-center sm:text-right">

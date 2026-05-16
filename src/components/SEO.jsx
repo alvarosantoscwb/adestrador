@@ -5,7 +5,7 @@ const SEO = ({
   title = 'Adestrador Profissional de Cães | Transforme o Seu Pet',
   description = 'Adestramento profissional de cães com técnicas modernas e positivas. Comportamento, obediência e educação para seu melhor amigo. Agende sua consulta!',
   keywords = 'adestrador de cães, adestramento de cachorros, educação canina, comportamento animal, treinamento de cães, adestrador profissional',
-  ogImage = 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=630&fit=crop',
+  ogImage = '/dog.png',
   type = 'website'
 }) => {
   const location = useLocation()
@@ -56,7 +56,7 @@ const SEO = ({
           },
           "priceRange": "$$",
           "openingHours": "Mo-Sa 09:00-18:00",
-          "telephone": "+5541999999999",
+          "telephone": "+554199251198",
           "image": ogImage
         })}
       </script>

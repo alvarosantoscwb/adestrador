@@ -26,7 +26,7 @@ const Hero = ({ stats }) => {
                 onClick={() => scrollTo('contato')}
                 className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors text-center shadow-lg hover:shadow-xl cursor-pointer"
               >
-                Agende uma Consulta 
+                Agende uma Consulta
               </button>
               <button
                 onClick={() => scrollTo('servicos')}
@@ -61,7 +61,7 @@ const Hero = ({ stats }) => {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <img
-              src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&h=800&fit=crop"
+              src="dog.png"
               alt="Adestrador profissional trabalhando com cachorro treinado"
               className="rounded-2xl shadow-2xl w-full h-auto object-cover"
               loading="eager"

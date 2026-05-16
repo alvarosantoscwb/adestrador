@@ -134,7 +134,23 @@ const Header = () => {
             className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             aria-label="Ir para o início"
           >
-            <span className="text-3xl sm:text-4xl group-hover:scale-110 transition-transform">🐕‍🦺</span>
+            <img
+            src="/Muzzle-bro.svg"
+            alt="Adestramento de cães"
+            className="
+            relative
+            -top-2
+            w-10
+            h-10
+            sm:w-10
+            sm:h-10
+            object-contain
+            shrink-0
+            transition-transform
+            duration-300
+            group-hover:scale-110
+          "
+        />
             <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
               AdestradorPro
             </span>
