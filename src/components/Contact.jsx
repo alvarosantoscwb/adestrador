@@ -66,7 +66,7 @@ const Contact = () => {
             transition={{ duration: 0.7 }}
           >
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-              Agende Sua Consulta Gratuita
+              Agende Sua Consulta
             </h3>
             <form
               className="space-y-3 sm:space-y-4"
