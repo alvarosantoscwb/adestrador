@@ -15,7 +15,7 @@ const Contact = () => {
             Entre em Contato
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
-            Transforme o comportamento do seu cão hoje! Agende uma consulta gratuita e descubra como podemos ajudar.
+            Transforme o comportamento do seu cão hoje! Agende uma consulta e descubra como podemos ajudar.
           </p>
         </motion.div>
 

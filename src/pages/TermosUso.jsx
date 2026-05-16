@@ -66,7 +66,7 @@ const TermosUso = () => {
             <section>
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">5. Pagamento e Orçamentos</h2>
               <p className="leading-relaxed mb-4">
-                Os orçamentos são fornecidos gratuitamente e são válidos por 30 dias. Os preços são acordados antes do início dos serviços.
+                Os orçamentos são fornecidos e são válidos por 30 dias. Os preços são acordados antes do início dos serviços.
               </p>
               <ul className="space-y-2 list-disc list-inside">
                 <li>Pagamento conforme combinado (à vista, parcelado, etc.)</li>

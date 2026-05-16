@@ -26,7 +26,7 @@ const Hero = ({ stats }) => {
                 onClick={() => scrollTo('contato')}
                 className="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors text-center shadow-lg hover:shadow-xl cursor-pointer"
               >
-                Agende uma Consulta Gratuita
+                Agende uma Consulta 
               </button>
               <button
                 onClick={() => scrollTo('servicos')}

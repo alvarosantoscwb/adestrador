@@ -117,7 +117,7 @@ const Services = () => {
             onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-block bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer"
           >
-            Solicite um Orçamento Gratuito
+            Solicite um Orçamento
           </button>
         </motion.div>
       </div>
